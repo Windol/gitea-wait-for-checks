@@ -1,0 +1,47 @@
+name: 'Gitea Wait on check'
+description: 'Wait on a certain check to pass for commit using Gitea API'
+author:
+  'Alex Manoel Ferreira Silva (Windol) <windol@legytma.com.br> - Legytma
+  Soluções Inteligentes Ltda <contato@legytma.com.br>'
+
+# Define your inputs here.
+inputs:
+  allowed-conclusions:
+    description: 'Array of allowed conclusions'
+    required: false
+    default: success,skipped
+  workflow-names:
+    description: 'Array of workflow names to verify'
+    required: false
+  job-names:
+    description: 'Array of job names to verify'
+    required: false
+  trigger-events:
+    description: 'Array of trigger events to verify'
+    required: false
+  ref:
+    description: 'A git ref to be checked: branch/tag/commit sha'
+    required: true
+  repo-token:
+    description: 'A GitHub token for the repo'
+    required: true
+  wait-interval:
+    description: 'Seconds to wait between Checks API requests'
+    required: false
+    default: '10'
+  api-endpoint:
+    description: 'Github API Endpoint to use.'
+    required: true
+
+# Define your outputs here.
+outputs:
+  status:
+    description: 'Checks Status List'
+
+runs:
+  using: node20
+  main: dist/index.js
+
+branding:
+  icon: 'check-circle'
+  color: 'green'
