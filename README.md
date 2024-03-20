@@ -5,6 +5,8 @@
 ![CI](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/ci.yml/badge.svg)
 ![CodeQL](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/codeql-analysis.yml/badge.svg)
 ![Coverage](badges/coverage.svg)
+![Release](https://shields.io/github/v/release/Legytma/gitea-wait-for-checks)
+![Release](https://shields.io/github/package-json/v/Legytma/gitea-wait-for-checks)
 
 **_This action was inspired on
 [lewagon/wait-on-check-action](https://github.com/lewagon/wait-on-check-action).
