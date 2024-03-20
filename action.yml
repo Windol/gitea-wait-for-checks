@@ -8,19 +8,24 @@ author:
 inputs:
   api-endpoint:
     description: 'Gitea API Endpoint to use.'
-    required: true
+    required: false
+    default: ${{ gitea.server_url }}
   owner:
     description: 'The repo owner'
-    required: true
+    required: false
+    default: ${{ gitea.repository_owner }}
   repository:
     description: 'The repo name'
-    required: true
+    required: false
+    default: ${{ gitea.event.repository.name }}
   repo-token:
     description: 'A Gitea token for the repo'
-    required: true
+    required: false
+    default: ${{ secrets.GITHUB_TOKEN }}
   ref:
     description: 'A git ref to be checked: branch/tag/commit sha'
-    required: true
+    required: false
+    default: ${{ gitea.sha }}
   allowed-conclusions:
     description: 'Array of allowed conclusions'
     required: false

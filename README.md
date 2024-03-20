@@ -1,7 +1,9 @@
 # gitea-wait-for-checks
 
+![Check Transpiled JavasScript](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/check-dist.yml/badge.svg)
 [![GitHub Super-Linter](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/linter.yml/badge.svg)](https://github.com/super-linter/super-linter)
 ![CI](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/ci.yml/badge.svg)
+![CodeQL](https://github.com/Legytma/gitea-wait-for-checks/actions/workflows/codeql-analysis.yml/badge.svg)
 ![Coverage](badges/coverage.svg)
 
 **_This action was inspired on
@@ -52,13 +54,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.0.0
-        with:
-          api-endpoint: ${{ gitea.server_url }}
-          owner: ${{ gitea.repository_owner }}
-          repository: ${{ gitea.event.repository.name }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ gitea.sha }}
+        uses: Legytma/gitea-wait-for-checks@v1.1.0
       ...
 ```
 
@@ -79,13 +75,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.0.0
+        uses: Legytma/gitea-wait-for-checks@v1.1.0
         with:
-          api-endpoint: ${{ gitea.server_url }}
-          owner: ${{ gitea.repository_owner }}
-          repository: ${{ gitea.event.repository.name }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ gitea.sha }}
           workflow-names: |-
             Test
       ...
@@ -108,13 +99,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.0.0
+        uses: Legytma/gitea-wait-for-checks@v1.1.0
         with:
-          api-endpoint: ${{ gitea.server_url }}
-          owner: ${{ gitea.repository_owner }}
-          repository: ${{ gitea.event.repository.name }}
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
-          ref: ${{ gitea.sha }}
           job-names: |-
             Run tests
       ...
