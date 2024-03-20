@@ -24,6 +24,8 @@ another workflow completes successfully.
 
 ## Minimal example
 
+`.gitea/workflows/test.yaml`
+
 ```yml
 name: Test
 
@@ -37,7 +39,7 @@ jobs:
         ...
 ```
 
-### Using Workflow Name
+`.gitea/workflows/push.yaml`
 
 ```yml
 name: Publish
@@ -57,13 +59,44 @@ jobs:
           repository: ${{ gitea.event.repository.name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ gitea.sha }}
-          workflow-names:
-            - 'Test'
+      ...
+```
+
+### Using Workflow Name
+
+Each workflow name must be on one line.
+
+`.gitea/workflows/push.yaml`
+
+```yml
+name: Publish
+
+on: [push]
+
+jobs:
+  publish:
+    name: Publish the package
+    runs-on: ubuntu-latest
+    steps:
+      - name: Wait for tests to succeed
+        uses: Legytma/gitea-wait-for-checks@v1.0.0
+        with:
+          api-endpoint: ${{ gitea.server_url }}
+          owner: ${{ gitea.repository_owner }}
+          repository: ${{ gitea.event.repository.name }}
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          ref: ${{ gitea.sha }}
+          workflow-names: |-
+            Test
       ...
 ```
 
 ### Using Job Name
 
+Each workflow name must be on one line.
+
+`.gitea/workflows/push.yaml`
+
 ```yml
 name: Publish
 
@@ -82,8 +115,8 @@ jobs:
           repository: ${{ gitea.event.repository.name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
           ref: ${{ gitea.sha }}
-          job-names:
-            - 'Run tests'
+          job-names: |-
+            Run tests
       ...
 ```
 
