@@ -21,7 +21,7 @@ inputs:
   repo-token:
     description: 'A Gitea token for the repo'
     required: false
-    default: ${{ secrets.GITHUB_TOKEN }}
+    default: ${{ github.token }}
   ref:
     description: 'A git ref to be checked: branch/tag/commit sha'
     required: false
