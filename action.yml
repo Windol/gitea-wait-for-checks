@@ -6,6 +6,21 @@ author:
 
 # Define your inputs here.
 inputs:
+  api-endpoint:
+    description: 'Gitea API Endpoint to use.'
+    required: true
+  owner:
+    description: 'The repo owner'
+    required: true
+  repository:
+    description: 'The repo name'
+    required: true
+  repo-token:
+    description: 'A Gitea token for the repo'
+    required: true
+  ref:
+    description: 'A git ref to be checked: branch/tag/commit sha'
+    required: true
   allowed-conclusions:
     description: 'Array of allowed conclusions'
     required: false
@@ -19,19 +34,10 @@ inputs:
   trigger-events:
     description: 'Array of trigger events to verify'
     required: false
-  ref:
-    description: 'A git ref to be checked: branch/tag/commit sha'
-    required: true
-  repo-token:
-    description: 'A GitHub token for the repo'
-    required: true
   wait-interval:
     description: 'Seconds to wait between Checks API requests'
     required: false
     default: '10'
-  api-endpoint:
-    description: 'Github API Endpoint to use.'
-    required: true
 
 # Define your outputs here.
 outputs:

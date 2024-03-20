@@ -6,7 +6,7 @@
 
 **_This action was inspired on
 [lewagon/wait-on-check-action](https://github.com/lewagon/wait-on-check-action).
-And is writed in Javascript to work on Gitea Actions._**
+And is writed in JavaScript to work on Gitea Actions._**
 
 Pause a workflow until a job in another workflow completes successfully.
 
@@ -53,9 +53,10 @@ jobs:
         uses: Legytma/gitea-wait-for-checks@v1.0.0
         with:
           api-endpoint: ${{ gitea.server_url }}
-          ref: ${{ gitea.sha }}
+          owner: ${{ gitea.repository_owner }}
+          repository: ${{ gitea.event.repository.name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          ref: ${{ gitea.sha }}
           workflow-names:
             - 'Test'
       ...
@@ -77,9 +78,10 @@ jobs:
         uses: Legytma/gitea-wait-for-checks@v1.0.0
         with:
           api-endpoint: ${{ gitea.server_url }}
-          ref: ${{ gitea.sha }}
+          owner: ${{ gitea.repository_owner }}
+          repository: ${{ gitea.event.repository.name }}
           repo-token: ${{ secrets.GITHUB_TOKEN }}
-          wait-interval: 10
+          ref: ${{ gitea.sha }}
           job-names:
             - 'Run tests'
       ...

@@ -5,8 +5,6 @@ const { checkStatuses } = require('../src/check-statuses');
 const { expect } = require('@jest/globals');
 const _ = require('lodash');
 
-require('dotenv').config();
-
 function generateSourceData(statusList) {
   return {
     statuses: statusList.map(status => {

@@ -28,13 +28,6 @@ jest.mock('../src/gitea-get-statuses', () => {
         ]
       };
     })
-    //   .mockImplementation(async () => {
-    //   return {
-    //     statuses: [
-    //       { status: "success", context: "workflowName1 / jobName1 (triggerEvent1)" },
-    //     ]
-    //   };
-    // }),
   };
 });
 

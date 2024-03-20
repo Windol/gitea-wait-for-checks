@@ -17,12 +17,12 @@ function formatResponse(statusArray) {
  */
 async function run() {
   try {
-    const waitInterval = core.getInput('wait-interval', { required: true });
     const apiEndpoint = core.getInput('api-endpoint', { required: true });
-    const apiToken = core.getInput('repo-token', { required: true });
     const owner = core.getInput('owner', { required: true });
     const repository = core.getInput('repository', { required: true });
+    const apiToken = core.getInput('repo-token', { required: true });
     const reference = core.getInput('ref', { required: true });
+    const waitInterval = core.getInput('wait-interval', { required: true });
 
     let allowedConclusions = core.getMultilineInput('allowed-conclusions', {
       required: false
