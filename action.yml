@@ -9,15 +9,15 @@ inputs:
   api-endpoint:
     description: 'Gitea API Endpoint to use.'
     required: false
-    default: ${{ gitea.server_url }}
+    default: ${{ github.server_url }}
   owner:
     description: 'The repo owner'
     required: false
-    default: ${{ gitea.repository_owner }}
+    default: ${{ github.repository_owner }}
   repository:
     description: 'The repo name'
     required: false
-    default: ${{ gitea.event.repository.name }}
+    default: ${{ github.event.repository.name }}
   repo-token:
     description: 'A Gitea token for the repo'
     required: false
@@ -25,7 +25,7 @@ inputs:
   ref:
     description: 'A git ref to be checked: branch/tag/commit sha'
     required: false
-    default: ${{ gitea.sha }}
+    default: ${{ github.sha }}
   allowed-conclusions:
     description: 'Array of allowed conclusions'
     required: false
