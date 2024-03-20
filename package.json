@@ -1,20 +1,22 @@
 {
-  "name": "javascript-action",
-  "description": "GitHub Actions JavaScript Template",
+  "name": "gitea-wait-for-checks",
+  "description": "Gitea Actions Wait for Checks (JavaScript)",
   "version": "1.1.0",
   "author": "Alex Manoel Ferreira Silva (Windol) <windol@legytma.com.br> - Legytma Soluções Inteligentes Ltda <contato@legytma.com.br>",
   "private": true,
-  "homepage": "https://github.com/actions/javascript-action#readme",
+  "homepage": "https://github.com/Legytma/gitea-wait-for-checks#readme",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/actions/javascript-action.git"
+    "url": "git+https://github.com/Legytma/gitea-wait-for-checks.git"
   },
   "bugs": {
-    "url": "https://github.com/actions/javascript-action/issues"
+    "url": "https://github.com/Legytma/gitea-wait-for-checks/issues"
   },
   "keywords": [
-    "GitHub",
+    "Gitea",
     "Actions",
+    "Wait",
+    "Checks",
     "JavaScript"
   ],
   "exports": {
