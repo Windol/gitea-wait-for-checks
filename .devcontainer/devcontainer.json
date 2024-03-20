@@ -1,5 +1,5 @@
 {
-  "name": "GitHub Actions (JavaScript)",
+  "name": "Gitea Actions Wait for Checks (JavaScript)",
   "image": "mcr.microsoft.com/devcontainers/javascript-node:20",
   "postCreateCommand": "npm install -g npm@latest; npm install",
   "customizations": {
