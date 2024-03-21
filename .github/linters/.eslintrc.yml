@@ -10,6 +10,7 @@ globals:
 
 ignorePatterns:
   - '!.*'
+  - '.versionrc.js'
   - '**/node_modules/.*'
   - '**/dist/.*'
   - '**/coverage/.*'
