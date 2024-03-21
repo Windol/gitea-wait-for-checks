@@ -56,7 +56,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.1.0
+        uses: Legytma/gitea-wait-for-checks@v1.2.0
       ...
 ```
 
@@ -77,7 +77,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.1.0
+        uses: Legytma/gitea-wait-for-checks@v1.2.0
         with:
           workflow-names: |-
             Test
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Wait for tests to succeed
-        uses: Legytma/gitea-wait-for-checks@v1.1.0
+        uses: Legytma/gitea-wait-for-checks@v1.2.0
         with:
           job-names: |-
             Run tests
