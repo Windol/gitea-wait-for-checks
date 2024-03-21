@@ -47,7 +47,9 @@ inputs:
 # Define your outputs here.
 outputs:
   status:
-    description: 'Checks Status List'
+    description: 'Checks Status Sumary List'
+  raw:
+    description: 'Checks Status RAW List'
 
 runs:
   using: node20

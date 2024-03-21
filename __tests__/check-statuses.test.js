@@ -5,26 +5,38 @@ const { checkStatuses } = require('../src/check-statuses');
 const { expect } = require('@jest/globals');
 const _ = require('lodash');
 
+let runIndex = 0;
+
 function generateSourceData(statusList) {
+  runIndex++;
+
   return {
-    statuses: statusList.map(status => {
+    statuses: statusList.map((status, index) => {
       return {
         status,
+        target_url: `/owner_example/repository_example/actions/runs/${runIndex}/jobs/${index + 1}`,
         context: `test_${status}_workflow / test_${status}_job (test_${status}_trigger)`
       };
     })
   };
 }
 
-function generateResultData(statusList = ['success']) {
-  return statusList.map(status => {
-    return {
-      jobName: `test_${status}_job`,
-      status,
-      context: `test_${status}_workflow / test_${status}_job (test_${status}_trigger)`,
-      workflowName: `test_${status}_workflow`,
-      triggerEvent: `test_${status}_trigger`
-    };
+function generateResultData(sourceData, statusList = ['success']) {
+  const filteredSourceData = [
+    ...sourceData.filter(data => statusList.includes(data.status))
+  ];
+
+  return filteredSourceData.map(data => {
+    data.jobName = `test_${data.status}_job`;
+    data.workflowName = `test_${data.status}_workflow`;
+    data.triggerEvent = `test_${data.status}_trigger`;
+
+    const targetUrlArray = data.target_url.split('/');
+
+    data.runNumber = targetUrlArray[5];
+    data.jobNumber = targetUrlArray[7];
+
+    return data;
   });
 }
 
@@ -77,9 +89,16 @@ describe('check-statuses.js', () => {
       'failure',
       'pending'
     ]);
-    const expectedAllowedResulData = generateResultData(['success', 'skipped']);
-    const expectedDeniedResulData = generateResultData(['failure']);
-    const expectedPendingResulData = generateResultData(['pending']);
+    const expectedAllowedResulData = generateResultData(sourceData.statuses, [
+      'success',
+      'skipped'
+    ]);
+    const expectedDeniedResulData = generateResultData(sourceData.statuses, [
+      'failure'
+    ]);
+    const expectedPendingResulData = generateResultData(sourceData.statuses, [
+      'pending'
+    ]);
 
     const result = checkStatuses(
       sourceData,
@@ -116,9 +135,16 @@ describe('check-statuses.js', () => {
       'failure',
       'pending'
     ]);
-    const expectedAllowedResulData = generateResultData(['success', 'skipped']);
-    const expectedDeniedResulData = generateResultData(['failure']);
-    const expectedPendingResulData = generateResultData(['pending']);
+    const expectedAllowedResulData = generateResultData(sourceData.statuses, [
+      'success',
+      'skipped'
+    ]);
+    const expectedDeniedResulData = generateResultData(sourceData.statuses, [
+      'failure'
+    ]);
+    const expectedPendingResulData = generateResultData(sourceData.statuses, [
+      'pending'
+    ]);
 
     const result = checkStatuses(
       sourceData,
@@ -155,9 +181,16 @@ describe('check-statuses.js', () => {
       'failure',
       'pending'
     ]);
-    const expectedAllowedResulData = generateResultData(['success', 'skipped']);
-    const expectedDeniedResulData = generateResultData(['failure']);
-    const expectedPendingResulData = generateResultData(['pending']);
+    const expectedAllowedResulData = generateResultData(sourceData.statuses, [
+      'success',
+      'skipped'
+    ]);
+    const expectedDeniedResulData = generateResultData(sourceData.statuses, [
+      'failure'
+    ]);
+    const expectedPendingResulData = generateResultData(sourceData.statuses, [
+      'pending'
+    ]);
 
     const result = checkStatuses(
       sourceData,
@@ -194,9 +227,16 @@ describe('check-statuses.js', () => {
       'failure',
       'pending'
     ]);
-    const expectedAllowedResulData = generateResultData(['failure']);
-    const expectedDeniedResulData = generateResultData(['success', 'skipped']);
-    const expectedPendingResulData = generateResultData(['pending']);
+    const expectedAllowedResulData = generateResultData(sourceData.statuses, [
+      'failure'
+    ]);
+    const expectedDeniedResulData = generateResultData(sourceData.statuses, [
+      'success',
+      'skipped'
+    ]);
+    const expectedPendingResulData = generateResultData(sourceData.statuses, [
+      'pending'
+    ]);
 
     const result = checkStatuses(
       sourceData,
@@ -228,9 +268,16 @@ describe('check-statuses.js', () => {
       'failure',
       'pending'
     ]);
-    const expectedAllowedResulData = generateResultData(['success', 'skipped']);
-    const expectedDeniedResulData = generateResultData(['failure']);
-    const expectedPendingResulData = generateResultData(['pending']);
+    const expectedAllowedResulData = generateResultData(sourceData.statuses, [
+      'success',
+      'skipped'
+    ]);
+    const expectedDeniedResulData = generateResultData(sourceData.statuses, [
+      'failure'
+    ]);
+    const expectedPendingResulData = generateResultData(sourceData.statuses, [
+      'pending'
+    ]);
 
     sourceData.statuses.push({ status: 'failure' });
     expectedDeniedResulData.push({ status: 'failure' });
