@@ -23,16 +23,16 @@ function checkStatuses(
       status.triggerEvent = contextMatches[3];
     }
 
-    const targetUrlRegex = new RegExp(
-      '\\/runs\\/(\\d+)\\/jobs\\/(\\d+)$',
-      'gs'
-    );
-    const targetUrlMatches = targetUrlRegex.exec(status.target_url);
+    // const targetUrlRegex = new RegExp(
+    //   '\\/runs\\/(\\d+)\\/jobs\\/(\\d+)$',
+    //   'gs'
+    // );
+    // const targetUrlMatches = targetUrlRegex.exec(status.target_url);
 
-    if (targetUrlMatches && targetUrlMatches.length === 3) {
-      status.runNumber = targetUrlMatches[1];
-      status.jobNumber = targetUrlMatches[2];
-    }
+    // if (targetUrlMatches && targetUrlMatches.length === 3) {
+    //   status.runNumber = targetUrlMatches[1];
+    //   status.jobNumber = targetUrlMatches[2];
+    // }
 
     return status;
   });

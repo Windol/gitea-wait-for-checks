@@ -27,16 +27,20 @@ function generateResultData(sourceData, statusList = ['success']) {
   ];
 
   return filteredSourceData.map(data => {
-    data.jobName = `test_${data.status}_job`;
-    data.workflowName = `test_${data.status}_workflow`;
-    data.triggerEvent = `test_${data.status}_trigger`;
+    // const targetUrlArray = data.target_url.split('/');
+    const newData = Object.assign(
+      {
+        jobName: `test_${data.status}_job`,
+        workflowName: `test_${data.status}_workflow`,
+        triggerEvent: `test_${data.status}_trigger`
 
-    const targetUrlArray = data.target_url.split('/');
+        // runNumber: targetUrlArray[5],
+        // jobNumber: targetUrlArray[7],
+      },
+      data
+    );
 
-    data.runNumber = targetUrlArray[5];
-    data.jobNumber = targetUrlArray[7];
-
-    return data;
+    return newData;
   });
 }
 
